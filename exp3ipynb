@@ -1,0 +1,186 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyPcWD/exk/rQtwRihe6pD3p",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/indhu1122/indhu/blob/main/exp3ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yzam3N7UPu03",
+        "outputId": "f17414d7-0cdb-4806-cd5d-9d31b2ef93f6"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "pearson's correlation coefficient: 0.9999999999999998\n"
+          ]
+        }
+      ],
+      "source": [
+        "import numpy as np\n",
+        "def pearson_correlation(x,y):\n",
+        "  #calculate means\n",
+        "  mean_x=np.mean(x)\n",
+        "  mean_y=np.mean(y)\n",
+        "\n",
+        "  covariance =np.sum((x-mean_x)*(y-mean_y))\n",
+        "  std_dev_x=np.sqrt(np.sum((x-mean_x)**2))\n",
+        "  std_dev_y=np.sqrt(np.sum((y-mean_y)**2))\n",
+        "  correlation=covariance/(std_dev_x*std_dev_y)\n",
+        "  return correlation\n",
+        "x=np.array([1,2,3,4,5])\n",
+        "y=np.array([2,3,4,5,6])\n",
+        "print(\"pearson's correlation coefficient:\", pearson_correlation(x,y))"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from sklearn.metrics.pairwise import cosine_similarity\n",
+        "vector1=np.array([1,2,3])\n",
+        "vector2=np.array([4,5,6])\n",
+        "cosine_sim=cosine_similarity(vector1.reshape(1,-1),vector2.reshape(1,-1))\n",
+        "print(\"cosine similarity:\",cosine_sim[0][0])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "rASmef1BQ87D",
+        "outputId": "d2e2edde-9233-49f5-a3e5-a05f5d29e5e6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "cosine similarity: 0.9746318461970762\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def jaccard_similarity(set1,set2):\n",
+        "  intersection =len(set1.intersection(set2))\n",
+        "  union=len(set1.union(set2))\n",
+        "  return intersection/union\n",
+        "set1=set([1,2,3])\n",
+        "set2=set([2,3,4])\n",
+        "print(\"jaccard similarity:\",jaccard_similarity(set1,set2))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "iWE8jI9NSZwQ",
+        "outputId": "819c526b-3e1e-4965-e4a3-510330fbf602"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "jaccard similarity: 0.5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "yWj7z7jOTLjU"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def euclidean_distance(x,y):\n",
+        "  return np.sqrt(np.sum((x-y)**2))\n",
+        "point1=np.array([1,2,3])\n",
+        "point2=np.array([4,5,6])\n",
+        "print(\"euclidean distance:\",euclidean_distance(point1,point2))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_hGLNr95TN_z",
+        "outputId": "f44ca2ff-87a9-402c-dca7-f50e9464c392"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "euclidean distance: 5.196152422706632\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def manhattan_distance(x,y):\n",
+        "  return np.sum(np.abs(x-y))\n",
+        "point1=np.array([1,2,3])\n",
+        "point2=np.array([4,5,6])\n",
+        "print(\"manhattan distance:\",manhattan_distance(point1,point2))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8k5vubpNT01c",
+        "outputId": "99960e75-654c-4d5c-d81e-8bb8d56bd504"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "manhattan distance: 9\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
